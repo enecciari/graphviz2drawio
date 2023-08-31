@@ -38,7 +38,7 @@ def main():
         outfile = args.outfile
     else:
         base = args.to_convert.split(".")
-        outfile = ".".join(base[:-1] + ["xml"])
+        outfile = ".".join(base[:-1] + ["drawio"])
     with open(outfile, "w") as fd:
         fd.write(output)
     stderr.write("Converted file: " + outfile + "\n")

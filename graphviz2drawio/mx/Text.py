@@ -12,6 +12,7 @@ class Text:
         self.color = color
 
     def get_mx_style(self):
+        self.anchor = DotAttr.MIDDLE
         align = MxConst.CENTER if self.anchor == DotAttr.MIDDLE else MxConst.START
         # TODO: add right
         margin = (

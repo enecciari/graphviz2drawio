@@ -1,7 +1,7 @@
 from xml.etree import ElementTree as ET
 
 from graphviz2drawio.models import DotAttr
-from graphviz2drawio.mx import MxConst
+from graphviz2drawio.mx import MxConst, Shape
 from graphviz2drawio.mx.Styles import Styles
 
 
@@ -83,6 +83,8 @@ class MxGraph:
         )
         stroke = node.stroke if node.stroke is not None else MxConst.DEFAULT_STROKE
 
+        if node.shape == None:
+            node.shape = Shape.RECTANGLE
         style = Styles.get_for_shape(node.shape).format(fill=fill, stroke=stroke)
 
         node_element = ET.SubElement(
@@ -112,6 +114,7 @@ class MxGraph:
         # cbset
         if len(curve.cbset) > 0:
             array = ET.SubElement(geo, MxConst.ARRAY, {"as": "points"})
+        cb = None
         for cb in curve.cbset:
             ET.SubElement(array, MxConst.POINT, x=str(cb[0][0]), y=str(cb[0][1]))
         if cb:
